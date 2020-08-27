@@ -1,5 +1,5 @@
-<input type="text" [(ngModel)]="userInputTag">
-<button *ngIf="!queryInProgress" (click)="searchTag()">Найти</button>
+<input type="text" [(ngModel)]="userInputTag" placeholder="Введите тег">
+<button *ngIf="!queryInProgress" (click)="searchTag()">Загрузить</button>
 <button *ngIf="queryInProgress" disabled>Загрузка...</button>
 <button (click)="clear()">Очистить</button>
 <img *ngFor="let gif of gifsArray" src="{{gif.url}}">

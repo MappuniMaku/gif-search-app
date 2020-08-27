@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../image.service';
+import { Gif } from '../gif';
 
 @Component({
   selector: 'app-images',
@@ -15,7 +16,7 @@ export class ImagesComponent implements OnInit {
 
   userInputTag: string = '';
   queryInProgress: boolean = false;
-  gifsArray = [];
+  gifsArray: object[] = [];
 
   searchTag(): void {
     if (this.userInputTag) {
@@ -30,7 +31,11 @@ export class ImagesComponent implements OnInit {
     this.queryInProgress = false;
 
     if(serverResponse.data.image_url) {
-      this.gifsArray.push({tag: this.userInputTag, url: serverResponse.data.image_url});
+      let gif: Gif = {
+        tag: this.userInputTag,
+        url: serverResponse.data.image_url
+      };
+      this.gifsArray.push(gif);
     } else {
       alert('По тегу ничего не найдено');
     }
