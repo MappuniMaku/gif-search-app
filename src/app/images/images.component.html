@@ -7,10 +7,10 @@
         <button *ngIf="!isGrouped" (click)="groupImages()" class="controls__item controls__button-group">Группировать</button>
         <button *ngIf="isGrouped" (click)="ungroupImages()" class="controls__item controls__button-group">Разгруппировать</button>
     </div>
-    
+
     <div *ngIf="!isGrouped" class="gallery">
         <div *ngFor="let gif of gifsArray" class="gallery__item">
-            <img src="{{gif.url}}" class="gallery__image">
+            <img (click)="displayTag(gif.tag)" src="{{gif.url}}" alt="{{gif.tag}}" class="gallery__image">
         </div>
     </div>
 
@@ -18,7 +18,7 @@
         <p class="gallery__tag-name">{{ tag }}</p>
         <div *ngFor="let gif of gifsArray">
             <div *ngIf="gif.tag === tag" class="gallery__item">
-                <img src="{{gif.url}}" class="gallery__image">
+                <img (click)="displayTag(gif.tag)" src="{{gif.url}}" alt="{{gif.tag}}" class="gallery__image">
             </div>
         </div>
     </div>

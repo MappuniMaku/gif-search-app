@@ -64,6 +64,10 @@ export class ImagesComponent implements OnInit {
     this.uniqueTagsArray = [];
   }
 
+  displayTag(tag: string): void {
+    this.userInputTag = tag;
+  }
+
   fillUniqueTagsArray(): void {
     for (let gif of this.gifsArray) {
       if (!this.uniqueTagsArray.includes(gif.tag)) {
