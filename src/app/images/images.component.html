@@ -1,5 +1,15 @@
-<input type="text" [(ngModel)]="userInputTag" placeholder="Введите тег">
-<button *ngIf="!queryInProgress" (click)="searchTag()">Загрузить</button>
-<button *ngIf="queryInProgress" disabled>Загрузка...</button>
-<button (click)="clear()">Очистить</button>
-<img *ngFor="let gif of gifsArray" src="{{gif.url}}">
+<div class="wrapper">
+    <div class="controls">
+        <input type="text" [(ngModel)]="userInputTag" placeholder="Введите тег" class="controls__item controls__input">
+        <button *ngIf="!queryInProgress" (click)="searchTag()" class="controls__item controls__button-load">Загрузить</button>
+        <button *ngIf="queryInProgress" class="controls__item controls__button-load" disabled>Загрузка...</button>
+        <button (click)="clear()" class="controls__item controls__button-clear">Очистить</button>
+        <button class="controls__item controls__button-group">Группировать</button>
+        <button class="controls__item controls__button-group">Разгруппировать</button>
+    </div>
+    <div class="gallery">
+        <div *ngFor="let gif of gifsArray" class="gallery__item">
+            <img src="{{gif.url}}" class="gallery__image">
+        </div>
+    </div>
+</div>
