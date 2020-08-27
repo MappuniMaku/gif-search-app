@@ -1,7 +1,5 @@
-<p>images works!</p>
-<input type="text" [(ngModel)]="currentTag">
+<input type="text" [(ngModel)]="userInputTag">
 <button *ngIf="!queryInProgress" (click)="searchTag()">Найти</button>
 <button *ngIf="queryInProgress" disabled>Загрузка...</button>
-<button (click)="logAll()">Log</button>
-<p>{{ currentTag }}</p>
-<img *ngFor="let src of srcArr" src="{{src.url}}">
+<button (click)="clear()">Очистить</button>
+<img *ngFor="let gif of gifsArray" src="{{gif.url}}">

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../image.service';
-import { catchError, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-images',
@@ -14,45 +13,37 @@ export class ImagesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  currentTag: string = '';
+  userInputTag: string = '';
   queryInProgress: boolean = false;
-
-  gifJSON;
-  srcArr = [];
+  gifsArray = [];
 
   searchTag(): void {
-    if (this.currentTag) {
+    if (this.userInputTag) {
       this.queryInProgress = true;
-      this.getGif(this.currentTag);
+      this.getGifJSON(this.userInputTag);
     } else {
-      alert('Введите тег для поиска')
+      alert('Заполните поле "тег"');
     }
   }
 
-  handleResponse(): void {
+  handleResponse(serverResponse): void {
     this.queryInProgress = false;
 
-    if(this.gifJSON.data.image_url) {
-      this.srcArr.push({tag: this.currentTag, url: this.gifJSON.data.image_url});
+    if(serverResponse.data.image_url) {
+      this.gifsArray.push({tag: this.userInputTag, url: serverResponse.data.image_url});
     } else {
-      alert('По Вашему запросу ничего не найдено!');
+      alert('По тегу ничего не найдено');
     }
   }
 
-  logAll(): void {
-    let i: number;
-    let currentItem;
-
-    for (i = 0; i < this.srcArr.length; i += 1) {
-      currentItem = this.srcArr[i];
-      console.log(currentItem.tag + ': ' + currentItem.url);
-    }
+  clear(): void {
+    this.gifsArray = [];
+    this.userInputTag = '';
   }
 
-  getGif(url: string): void {
-    this.imageService.getGif(url).subscribe(json => {
-      this.gifJSON = json;
-      this.handleResponse();
+  getGifJSON(tag: string): void {
+    this.imageService.getGifJSON(tag).subscribe(serverResponse => {
+      this.handleResponse(serverResponse);
     });
   }
 }
