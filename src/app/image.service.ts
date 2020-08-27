@@ -13,7 +13,7 @@ export class ImageService {
   ) { }
 
   getGifJSON(tag: string) {
-    const url: string = `https://api.giphy.com/v1/gifs/random?api_key=gTJAO48YcpmrADUyo4opy4ES4g7iDBxx&tag=${tag}`
+    const url: string = `https://api.giphy.com/v1/gifs/random?api_key=biXysln47XZ03gvbYk2z9BYMT7eaHT5R&tag=${tag}`
     return this.http.get(url).pipe(
       // tap(_ => console.log('GIF загружена успешно')),
       catchError(this.handleError('getGif', [])),
