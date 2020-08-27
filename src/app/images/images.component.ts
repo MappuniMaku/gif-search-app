@@ -15,12 +15,28 @@ export class ImagesComponent implements OnInit {
   }
 
   currentTag: string = '';
+  queryInProgress: boolean = false;
 
   gifJSON;
   srcArr = [];
 
   searchTag(): void {
-    this.getGif(this.currentTag);
+    if (this.currentTag) {
+      this.queryInProgress = true;
+      this.getGif(this.currentTag);
+    } else {
+      alert('Введите тег для поиска')
+    }
+  }
+
+  handleResponse(): void {
+    this.queryInProgress = false;
+
+    if(this.gifJSON.data.image_url) {
+      this.srcArr.push({tag: this.currentTag, url: this.gifJSON.data.image_url});
+    } else {
+      alert('По Вашему запросу ничего не найдено!');
+    }
   }
 
   logAll(): void {
@@ -31,13 +47,12 @@ export class ImagesComponent implements OnInit {
       currentItem = this.srcArr[i];
       console.log(currentItem.tag + ': ' + currentItem.url);
     }
-    console.log('url: ' + this.gifJSON.data.image_url);
   }
 
   getGif(url: string): void {
     this.imageService.getGif(url).subscribe(json => {
       this.gifJSON = json;
-      this.srcArr.push({tag: this.currentTag, url: this.gifJSON.data.image_url})
+      this.handleResponse();
     });
   }
 }
