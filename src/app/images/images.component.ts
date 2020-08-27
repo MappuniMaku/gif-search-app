@@ -16,7 +16,9 @@ export class ImagesComponent implements OnInit {
 
   userInputTag: string = '';
   queryInProgress: boolean = false;
-  gifsArray: object[] = [];
+  gifsArray: Gif[] = [];
+  isGrouped: boolean = false;
+  uniqueTagsArray: string[] = [];
 
   searchTag(): void {
     if (this.userInputTag) {
@@ -36,6 +38,11 @@ export class ImagesComponent implements OnInit {
         url: serverResponse.data.image_url
       };
       this.gifsArray.push(gif);
+
+      if (this.isGrouped) {
+        this.fillUniqueTagsArray();
+      };
+
     } else {
       alert('По тегу ничего не найдено');
     }
@@ -44,6 +51,25 @@ export class ImagesComponent implements OnInit {
   clear(): void {
     this.gifsArray = [];
     this.userInputTag = '';
+    this.uniqueTagsArray = [];
+  }
+
+  groupImages(): void {
+    this.isGrouped = true;
+    this.fillUniqueTagsArray();
+  }
+
+  ungroupImages(): void {
+    this.isGrouped = false;
+    this.uniqueTagsArray = [];
+  }
+
+  fillUniqueTagsArray(): void {
+    for (let gif of this.gifsArray) {
+      if (!this.uniqueTagsArray.includes(gif.tag)) {
+        this.uniqueTagsArray.push(gif.tag);
+      };
+    };
   }
 
   getGifJSON(tag: string): void {

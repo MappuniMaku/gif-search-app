@@ -4,12 +4,22 @@
         <button *ngIf="!queryInProgress" (click)="searchTag()" class="controls__item controls__button-load">Загрузить</button>
         <button *ngIf="queryInProgress" class="controls__item controls__button-load" disabled>Загрузка...</button>
         <button (click)="clear()" class="controls__item controls__button-clear">Очистить</button>
-        <button class="controls__item controls__button-group">Группировать</button>
-        <button class="controls__item controls__button-group">Разгруппировать</button>
+        <button *ngIf="!isGrouped" (click)="groupImages()" class="controls__item controls__button-group">Группировать</button>
+        <button *ngIf="isGrouped" (click)="ungroupImages()" class="controls__item controls__button-group">Разгруппировать</button>
     </div>
-    <div class="gallery">
+    
+    <div *ngIf="!isGrouped" class="gallery">
         <div *ngFor="let gif of gifsArray" class="gallery__item">
             <img src="{{gif.url}}" class="gallery__image">
+        </div>
+    </div>
+
+    <div *ngFor="let tag of uniqueTagsArray" class="gallery gallery_tagged">
+        <p class="gallery__tag-name">{{ tag }}</p>
+        <div *ngFor="let gif of gifsArray">
+            <div *ngIf="gif.tag === tag" class="gallery__item">
+                <img src="{{gif.url}}" class="gallery__image">
+            </div>
         </div>
     </div>
 </div>
