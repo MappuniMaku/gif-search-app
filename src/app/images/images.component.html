@@ -1,0 +1,6 @@
+<p>images works!</p>
+<input type="text" [(ngModel)]="currentTag">
+<button (click)="searchTag()">Найти</button>
+<button (click)="logAll()">Log</button>
+<p>{{ currentTag }}</p>
+<img *ngFor="let src of srcArr" src="{{src.url}}">
