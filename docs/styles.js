@@ -11,7 +11,7 @@
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(true);
 // Module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */", "",{"version":3,"sources":["styles.sass"],"names":[],"mappings":"AAAA,8EAAA","file":"styles.sass","sourcesContent":["/* You can add global styles to this file, and also import other style files */\n"]}]);
+exports.push([module.i, "body {\n  margin: 0;\n  font-family: Arial, Helvetica, sans-serif;\n}\n\n.content-wrapper {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: flex-start;\n  padding: 20px;\n}\n\n@media screen and (max-width: 350px) {\n  .content-wrapper {\n    padding: 20px 5px;\n  }\n}", "",{"version":3,"sources":["styles.sass"],"names":[],"mappings":"AAAA;EACI,SAAA;EACA,yCAAA;AACJ;;AACA;EACI,aAAA;EACA,sBAAA;EACA,mBAAA;EACA,2BAAA;EACA,aAAA;AAEJ;;AAAA;EACI;IACI,iBAAA;EAGN;AACF","file":"styles.sass","sourcesContent":["body\n    margin: 0\n    font-family: Arial, Helvetica, sans-serif\n\n.content-wrapper\n    display: flex\n    flex-direction: column\n    align-items: center\n    justify-content: flex-start\n    padding: 20px\n\n@media screen and ( max-width: 350px )\n    .content-wrapper\n        padding: 20px 5px "]}]);
 // Exports
 module.exports = exports;
 
